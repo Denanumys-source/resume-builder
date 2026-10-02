@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="form-control">
+<div>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">save</button>
+</form>
+</div>
+{% if t_con %}
+<form method="get">
+    {% csrf_token %}
+    {{ tform.as_p }}
+    <button type="submit">apply template</button>
+</form>
+{% endif %}
+{% endblock %}
+
+

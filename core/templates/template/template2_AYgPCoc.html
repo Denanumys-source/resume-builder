@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-4" style="max-width: 600px;">
+  <!-- Кнопка назад -->
+  <div class="mb-3">
+    <a href="{% url 'core:resume-list' %}" class="btn btn-outline-secondary btn-sm shadow-sm">
+      <i class="bi bi-arrow-left"></i> back to resume list
+    </a>
+  </div>
+
+  <!-- Панель перемикання шаблонів -->
+
+
+  <!-- Картка форми -->
+  <div class="card shadow-sm border-0 rounded-4">
+    <div class="card-header bg-primary text-white text-center py-3 rounded-top-4">
+      <h5 class="card-title mb-0 fw-bold">Resume Form</h5>
+    </div>
+    
+    <div class="card-body p-4">
+      {% elif t_con == '1' %}
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="bs-form-soft">
+          {{ form.as_p }}
+        </div>
+
+        <div class="d-grid gap-2 mt-4">
+          <button type="submit" class="btn btn-primary btn-lg shadow-sm rounded-3">
+            Save
+          </button>
+        </div>
+      </form>
+    {% elif t_con == '2' %}
+          <h5 class="card-title">{{ resume.title }}</h5>
+          <p class="card-text">Посада: {{ resume.occupation }}</p>
+          <p class="card-text">Досвід: {{ resume.experience.text }}</p>
+          <p class="card-text">Дата створення: {{ resume.created_at }}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Варіант 1: Soft Rounded Style */
+  .bs-form-soft p {
+    margin-bottom: 1.2rem;
+  }
+  .bs-form-soft label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6c757d;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .bs-form-soft input,
+  .bs-form-soft textarea,
+  .bs-form-soft select {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.95rem;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+  }
+  .bs-form-soft input:focus,
+  .bs-form-soft textarea:focus,
+  .bs-form-soft select:focus {
+    background-color: #fff;
+    border-color: #0d6efd;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+  }
+</style>
+{% endblock %}

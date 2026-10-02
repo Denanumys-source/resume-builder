@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Resume{% endblock %}
+{% block content %}
+<h1>Resume list</h1>
+<div>
+    <button type="button" class="btn btn-primary btn-sm">
+        <a href="{% url 'core:resume-list' %}" class="text-white text-decoration-none" style="margin-bottom: 10px;">back</a>
+    </button>
+</div>
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">{{ resume.title }}</h5>
+        <p class="card-text">Посада: {{ resume.occupation }}</p>
+        <p class="card-text">Досвід: {{ resume.experience.text }}</p>
+        <p class="card-text">Дата створення: {{ resume.created_at }}</p>
+        <p>{{resume.template}}</p>
+        {% if resume.template %}
+        {% include resume.template.file.path %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

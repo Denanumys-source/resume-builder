@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-4" style="max-width: 600px;">
+  <div class="mb-3">
+    <a href="{% url 'core:resume-list' %}" class="btn btn-outline-secondary btn-sm shadow-sm">
+      <i class="bi bi-arrow-left"></i> back to resume list
+    </a>
+  </div>
+
+  <div class="card shadow-sm border-0 mb-3 bg-light">
+    <div class="card-body p-2 d-flex align-items-center justify-content-between">
+      <span class="fw-semibold text-muted small ms-2">
+        <i class="bi bi-layout-text-window-reverse me-1"></i> Оберіть шаблон:
+      </span>
+      <div class="btn-group" role="group">
+        <a href="{% url 'core:template-one' %}" class="btn btn-sm btn-outline-secondary px-3 rounded-pill ms-1">
+          <i class="bi bi-file-earmark-text me-1"></i> Шаблон 1
+        </a>
+        <a href="{% url 'core:template-two' %}" class="btn btn-sm btn-outline-secondary px-3 rounded-pill ms-1">
+          <i class="bi bi-file-earmark-code me-1"></i> Шаблон 2
+        <a href="{% url 'core:template-three' %}" class="btn btn-sm btn-outline-secondary px-3 rounded-pill ms-1">
+          <i class="bi bi-file-earmark-code me-1"></i> Шаблон 3
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow border-0 rounded-3">
+    <div class="card-header bg-dark text-white text-center py-3">
+      <h5 class="card-title mb-0 fw-bold">Resume Form</h5>
+    </div>
+    
+    <div class="card-body p-4">
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="bs-form-underline">
+          {{ form.as_p }}
+        </div>
+
+        <div class="d-grid gap-2 mt-4">
+          <button type="submit" class="btn btn-dark shadow">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Варіант 2: Material Underline Style */
+  .bs-form-underline p {
+    margin-bottom: 1.25rem;
+  }
+  .bs-form-underline label {
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+  .bs-form-underline input,
+  .bs-form-underline textarea,
+  .bs-form-underline select {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.25rem;
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #dee2e6;
+    border-radius: 0;
+    transition: border-color 0.2s ease;
+  }
+  .bs-form-underline input:focus,
+  .bs-form-underline textarea:focus,
+  .bs-form-underline select:focus {
+    outline: none;
+    border-bottom-color: #212529;
+    box-shadow: none;
+  }
+</style>
+{% endblock %}

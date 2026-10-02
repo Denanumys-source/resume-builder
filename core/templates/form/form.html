@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div>
+      <button type="button" class="btn btn-primary btn-sm">
+          <a href="{% url 'core:resume-list' %}" class="text-white text-decoration-none" style="margin-bottom: 10px;">back to resume list</a>
+      </button>
+  </div>
+  <div class="form-container">
+    <form method="post">
+      <div class="form-control form-control-lg" style="width:80%;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+      </div>
+    </form>
+ </div>
+ <div>
+    <button><a href="{% url 'core:template-one' %}">1</a></button>
+    <button>2</button>
+ </div>
+ <!-- <div class="cointaner-right">
+    <form method="post">
+      <div class="form-control form-control-lg">
+        {% csrf_token %}
+        {{ t_form.as_p }}
+        <button type="submit"><a href="">save</a></button>
+      </div>
+    </form>
+ </div> -->
+{% endblock %}
